@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head class="fondo">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"/>
+
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <style>
+          .fondo{
+                background-image: url("https://i.pinimg.com/originals/5d/03/31/5d0331415ed26d803aa27e1b6ae9b3b4.jpg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+  background-size: cover;
+            }
+        </style>
+    </head>
+    <body class="fondo">
+      <div sec:authorize="hasRole('ADMIN')" th:replace="/fragments/nav :: navbar"   >
+      </div>
+    
+      <div sec:authorize="hasRole('USUARIO')" th:replace="/fragments/navbar-usuario :: navbar-usuario" >   
+     </div>
+
+
+      <div th:if="${exito}!=null" class="alert alert-success">
+        <div class="card-body"> 
+        <h5 class="card-title">exito</h5>
+        <p class="card-text" th:text="${exito}"></p>
+        </div>
+              </div>   
+        <div  th:if="${error}!=null" class="card text-white bg-danger mb-3">
+        <div class="card-body">
+          <h5 class="card-title">error</h5>
+          <p class="card-text " th:text="${error}"></p>
+        </div>
+        </div>
+    
+
+
+        
+          <h3 style="color: honeydew;">Modificar Libro</h3>
+          <br>
+  <form th:action="@{/libro/modificar/__${libro.isbn}__}" method="post" class="needs-validation" novalidate >
+    <div class="form-group" style="color: honeydew;">
+      <div class="form-row" style="color: honeydew;">
+        <div class="col-md-6 mb-3">
+        <label for="isbn">ISBN del libro</label>
+<input  placeholder="isbn" type="number" name="id"  th:value="${libro.isbn}" id="validationCustom03" required >
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+
+<br>
+<div class="form-row" style="color: honeydew;">
+  <div class="col-md-6 mb-3">
+<label for="titulo">titulo del libro</label>
+<input  placeholder="titulo" type="text" name="titulo"  th:value="${libro.titulo}" id="validationCustom03" required >
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+
+<br>
+<div class="form-row" style="color: honeydew;">
+  <div class="col-md-6 mb-3">
+<label for="apellido">año del libro</label>
+<input type="text"  placeholder="año" name="anio"  th:value="${libro.anio}" id="validationCustom03" required>
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+
+<br>
+<div class="form-row" style="color: honeydew;">
+  <div class="col-md-6 mb-3">
+<label for="apellido">ejemplares del libro</label>
+<input type="text"  placeholder="ejemplares" name="ejemplares"  th:value="${libro.ejemplares}" id="validationCustom03" required>
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+
+<br>
+<div class="form-row" style="color: honeydew;">
+  <div class="col-md-6 mb-3">
+<label for="apellido">ejemplares prestados del libro</label>
+<input type="text"  placeholder="ejemplaresPrestados" name="ejemplaresPrestados"  th:value="${libro.ejemplaresPrestados}" id="validationCustom03" required>
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+
+<br>
+<div class="form-row" style="color: honeydew;">
+  <div class="col-md-6 mb-3">
+<label for="apellido">ejemplares restantes del libro</label>
+<input type="text"  placeholder="ejemplaresRestantes" name="ejemplaresRestantes"  th:value="${libro.ejemplaresRestantes}" id="validationCustom03" required>
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+
+<br>
+
+<div class="form-row" style="color: honeydew;">
+<div class="col-md-3 mb-3">
+<label  for="autor" id="validationCustom04" required>autor del libro</label>
+<select   name="autor">
+  <option th:text="${libro.autor.nombre}+' '+${libro.autor.apellido} " selected disabled>
+  </option>
+    <option th:each="autor : ${autor}" th:value="${autor.id}" th:text="${autor.nombre}+' '+ ${autor.apellido}">
+    </option>
+  </select>
+  <div class="invalid-feedback">
+    campo obligatorio
+  </div>
+  </div>
+  </div>
+
+<br>
+<div class="form-row" style="color: honeydew;">
+<div class="col-md-3 mb-3">
+<label  for="autor" id="validationCustom04" required>editorial del libro</label>
+<select   name="editorial"> 
+  <option th:text="${libro.editorial.nombre}" selected disabled></option>
+  <option th:each="editorial : ${editorial}" th:value="${editorial.id}" th:text="${editorial.nombre}">
+  </option>
+</select>
+<div class="invalid-feedback">
+  campo obligatorio
+</div>
+</div>
+</div>
+<br>
+<button class="btn btn-primary" type="submit" th:href="@{/libro/modificar/__${libro.isbn}__}">Guardar</button>
+</div>
+  </form >
+
+  
+
+        
+        
+        
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>   
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+  </script>        
+
+    </body>
+</html>

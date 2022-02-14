@@ -1,0 +1,94 @@
+
+/*
+padding=espacio entre el texto y el contendor
+
+margin=espacio entre pantalla y el elemento
+*/
+/* Para que en todos los navegadores se vea igual */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.fondo {
+  background-image: url("https://2.bp.blogspot.com/-nJ12IC51iYA/Wm-DNYNd0mI/AAAAAAAA2xs/OXbDcqJk6EYXm6YTWi3t_g0j6FHUZNPfwCLcBGAs/w1200-h630-p-k-no-nu/C%25C3%25B3mo%2Barmamos%2Bel%2Bfondo%2Bbibliogr%25C3%25A1fico%2Bde%2Buna%2Bbiblioteca.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.form-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 40%;
+}
+
+.caro {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+h5{
+    
+    color: red
+}
+p{
+    color: red;
+}
+.footer{
+  bottom: 0;
+  text-align: center;
+  color: rgb(223, 66, 66);
+  background-color: rgb(5, 28, 48);
+position: absolute;
+  width: 100%;
+  height: 20px;
+ margin-left: 10px;
+ margin-right: 10px;
+}
+.container{
+  
+  border: solid 3px rgb(5, 28, 48);
+  margin:10px 300px 30px 300px;
+  color: rgb(243, 240, 240);
+font-family: Algerian;
+padding: 5px;
+height: 300px;
+}
+.container label{
+  padding: 5px;
+  margin: 15px;
+  background: rgb(17, 0, 0);
+  
+}
+.container input{
+  margin-left: 0;
+  padding: 5px;/*ancho de la casilla*/
+}
+.btn{
+  color:white;
+  background-color: rgb(83, 174, 197);
+  width: 90px;
+  height: 35px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.container small{
+  text-align: center;
+  color: rgb(60, 38, 184);
+  background-color: coral;
+  padding: 4px;
+  margin-left: 150px;
+  
+}
+.btn-registrar{
+  text-align: center;
+  color: rgb(60, 38, 184);
+  background-color: rgb(64, 40, 109);
+  padding: 4px;
+  margin-left: 150px;
+  color: aliceblue;
+}

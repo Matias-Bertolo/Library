@@ -1,0 +1,79 @@
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand"th:if="@{session.clienteSession}!=null" th:href="@{/inicio}" >Home</a>
+            <a class="navbar-brand"th:unless="@{session.clienteSession}!=null" th:href="@{/inicio}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">               
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Prestamos
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/prestamo/listar}">Lista de prestamos</a>
+                    <a class="dropdown-item" th:href="@{/prestamo/prestar}">Registrar prestamo</a>         
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Clientes
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/cliente/listar}">Lista</a>
+                    <a class="dropdown-item" th:href="@{/cliente/crear}">Crear Nuevo</a>         
+                  </div>
+                </li>
+                
+                <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+          Libro
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" th:href="@{/libro/listar}">Lista</a>
+          <a class="dropdown-item" th:href="@{/libro/crear}">Crear Nuevo</a>         
+        </div>
+      </li>
+              
+                 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+          Editorial
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" th:href="@{/editorial/listar}">Lista</a>
+          <a class="dropdown-item" th:href="@{/editorial/crear}">Crear Nueva</a>         
+        </div>
+      </li>
+                 <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+          Autores
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" th:href="@{/autor/listar}">Lista</a>
+          <a class="dropdown-item" th:href="@{/autor/crear}">Crear Nuevo</a>         
+        </div>
+      </li>
+                <li class="nav-item" >
+                  <a class="nav-link disabled"
+></a>
+                </li>
+
+              </ul>
+              
+              <ul class="navbar-nav ml-auto">
+                <span th:text="${session.clienteSession.rol}" style="color: chocolate;"></span>
+                <li class="nav-item dropdown">
+                  <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false" th:text="${session.clienteSession.nombre}+' '+${session.clienteSession.apellido}">
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/cliente/modificar/__${session.clienteSession.id}__}">Editar Perfil</a>
+                    <a class="dropdown-item" th:href="@{/logout}">LogOut</a>         
+                  </div>
+                </li>
+              </ul>
+            </div>
+            </div>
+            
+          </nav>
