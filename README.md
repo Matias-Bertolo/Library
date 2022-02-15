@@ -1,7 +1,14 @@
 # Library
 proyecto de libreria web
 
--donde se pueden hacer prestamos de libros
+create a database called libreria.
+run proyect with netbeans
+and now you can make a loan of books
+if you want to make some books, must change in workbench type user to admin
+so you have admin rights
+hope have fun!!
+
+Se pueden hacer prestamos de libros
 
 crear autores.
 crear ditoriales
