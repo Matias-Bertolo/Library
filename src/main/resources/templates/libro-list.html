@@ -5,84 +5,95 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Libreria web-lista libros</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"/>
 
-    <style>
-      .fondo{
-            background-image: url("https://storage.pixteller.com/designs/designs-images/2019-03-27/05/love-and-passion-background-backgrounds-romantic-1-5c9b9945866ba.png");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-background-size: cover;
-        }
+<head>
+  <title>Libreria web-lista libros</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+
+  <style>
+    .fondo {
+      background-image: url("https://storage.pixteller.com/designs/designs-images/2019-03-27/05/love-and-passion-background-backgrounds-romantic-1-5c9b9945866ba.png");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
   </style>
 </head>
-<body class="fondo" >
 
-  <div sec:authorize="hasRole('ADMIN')" th:replace="/fragments/nav :: navbar"   >
+<body class="fondo">
+
+  <div sec:authorize="hasRole('ADMIN')" th:replace="/fragments/nav :: navbar">
   </div>
 
-  <div sec:authorize="hasRole('USUARIO')" th:replace="/fragments/navbar-usuario :: navbar-usuario" >   
- </div>
-          
-        
-        <h3>Lista de libros</h3>
-        
-        <table border="black" class="table table-hover">
-            <thead>
-                <tr>
-                    <th style="text-align: center;">isbn</th>
-                    <th style="text-align: center;">titulo</th>
-                    <th style="text-align: center;">año</th>
-                    <th style="text-align: center;">ejemplares</th>
-                    <th style="text-align: center;">ejemplares prestados</th>
-                    <th style="text-align: center;">ejemplares restantes</th>
-                    <th style="text-align: center;">activo</th>
-                    <th style="text-align: center;">autor</th>
-                    <th style="text-align: center;">editorial</th>
-                    <th sec:authorize="hasRole('ADMIN')" style="text-align: center;" >Editar</th>
-                    <th sec:authorize="hasRole('ADMIN')" style="text-align: center;" >Baja/Alta</th>
+  <div sec:authorize="hasRole('USUARIO')" th:replace="/fragments/navbar-usuario :: navbar-usuario">
+  </div>
 
-                </tr>               
-                
-            </thead> 
-            <tbody th:each="aux:${libros}">
-                 <tr >
-            <td th:text="${aux.isbn}" style="text-align: center;"></td>
-            <td th:text="${aux.titulo}" style="text-align: center;"></td>
-            <td th:text="${aux.anio}" style="text-align: center;"></td>
-            <td th:text="${aux.ejemplares}" style="text-align: center;"></td>
-            <td th:text="${aux.ejemplaresPrestados}" style="text-align: center;"></td>
-            <td th:text="${aux.ejemplaresRestantes}" style="text-align: center;"></td>
-            <td style="text-align: center;">
-                <i th:if="${aux.alta}" class="fa fa-circle text-success"></i>
-                <i th:unless="${aux.alta}"  class="fa fa-circle" style="color:red;"></i>
-              </td>
-            <td th:text="${aux.autor.nombre} + ' '+${aux.autor.apellido}"  style="text-align: center;"></td>
-            <td th:text="${aux.editorial.nombre}" style="text-align: center;"></td>
-            <td sec:authorize="hasRole('ADMIN')" style="text-align: center;"><a  th:href="@{/libro/modificar/__${aux.isbn}__}" class="btn btn-outline-success" ><i class="fas fa-edit"></i>Editar</a></td> 
-              <td sec:authorize="hasRole('ADMIN')" style="text-align: center;"><a  th:href="@{/libro/bajalta/__${aux.isbn}__}" th:class="${aux.alta} ? 'btn btn-danger rounded-pill' : 'btn btn-success rounded-pill'"
-                th:text="${aux.alta} ? 'Deshabilitar' : 'Habilitar'"></a></td> 
-            </tr>
-              
-            </tbody>
 
-        </table>
-        
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      
-    </body>
+  <h3>Lista de libros</h3>
+
+  <table border="black" class="table table-hover">
+    <thead>
+      <tr>
+        <th style="text-align: center;">isbn</th>
+        <th style="text-align: center;">titulo</th>
+        <th style="text-align: center;">año</th>
+        <th style="text-align: center;">ejemplares</th>
+        <th style="text-align: center;">ejemplares prestados</th>
+        <th style="text-align: center;">ejemplares restantes</th>
+        <th style="text-align: center;">activo</th>
+        <th style="text-align: center;">autor</th>
+        <th style="text-align: center;">editorial</th>
+        <th sec:authorize="hasRole('ADMIN')" style="text-align: center;">Editar</th>
+        <th sec:authorize="hasRole('ADMIN')" style="text-align: center;">Baja/Alta</th>
+
+      </tr>
+
+    </thead>
+    <tbody th:each="aux:${libros}">
+      <tr>
+        <td th:text="${aux.isbn}" style="text-align: center;"></td>
+        <td th:text="${aux.titulo}" style="text-align: center;"></td>
+        <td th:text="${aux.anio}" style="text-align: center;"></td>
+        <td th:text="${aux.ejemplares}" style="text-align: center;"></td>
+        <td th:text="${aux.ejemplaresPrestados}" style="text-align: center;"></td>
+        <td th:text="${aux.ejemplaresRestantes}" style="text-align: center;"></td>
+        <td style="text-align: center;">
+          <i th:if="${aux.alta}" class="fa fa-circle text-success"></i>
+          <i th:unless="${aux.alta}" class="fa fa-circle" style="color:red;"></i>
+        </td>
+        <td th:text="${aux.autor.nombre} + ' '+${aux.autor.apellido}" style="text-align: center;"></td>
+        <td th:text="${aux.editorial.nombre}" style="text-align: center;"></td>
+        <td sec:authorize="hasRole('ADMIN')" style="text-align: center;"><a
+            th:href="@{/libro/modificar/__${aux.isbn}__}" class="btn btn-outline-success"><i
+              class="fas fa-edit"></i>Editar</a></td>
+        <td sec:authorize="hasRole('ADMIN')" style="text-align: center;"><a th:href="@{/libro/bajalta/__${aux.isbn}__}"
+            th:class="${aux.alta} ? 'btn btn-danger rounded-pill' : 'btn btn-success rounded-pill'"
+            th:text="${aux.alta} ? 'Deshabilitar' : 'Habilitar'"></a></td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</body>
+
 </html>

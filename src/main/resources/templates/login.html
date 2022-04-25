@@ -4,57 +4,56 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="es" xmlns:th="http://www.thymeleaf.org" class="fondo">  
-    <head>
-        
-        <title>Shop Library</title>
-       
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
-        <link rel="stylesheet" href="Loginstyle.css" type="text/css">
-    </head>
-    
-    
-    <body>   
+<html lang="es" xmlns:th="http://www.thymeleaf.org" class="fondo">
 
-      <h1 style="text-align: center;">Library</h1> 
+<head>
 
-  
+    <title>Shop Library</title>
 
-<div class="container">
-    <form action="/logincheck" method="post">
-<br> 
-<input type="email" name="username" id="login" placeholder="Email" value="user@mail.com">
-<br>
-<br>
-<input type="password" name="password" id=""placeholder="Contraseña">
-<br>
-<button type="submit"  class="btn">Login</button>
-<br>
-<small>eres nuevo?</small>
-<br>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="Loginstyle.css" type="text/css">
+</head>
 
 
-</form>
-<a th:href="@{/registro}"><button type="button" class="btn btn-registrar">Registrar</button></a>
-</div>
+<body>
 
-        <footer class="footer">
-            
-                Copyright &copy; <cite>Derechos Reservados,Matias Bertolo</cite>
-            
-          </footer>
-          
+    <h1 style="text-align: center;">Library</h1>
 
-        
-            
-    
-         
+    <div class="container">
+        <form action="/logincheck" method="post">
+            <br>
+            <input type="email" name="username" id="login" placeholder="Email" value="user@mail.com">
+            <br>
+            <br>
+            <input type="password" name="password" id="" placeholder="Contraseña">
+            <br>
+            <button type="submit" class="btn">Login</button>
+            <br>
+            <small>eres nuevo?</small>
+            <br>
 
 
-        
-        
-    </body>
+        </form>
+        <a th:href="@{/registro}"><button type="button" class="btn btn-registrar">Registrar</button></a>
+    </div>
+
+    <footer class="footer">
+
+        Copyright &copy; <cite>Derechos Reservados,Matias Bertolo</cite>
+
+    </footer>
+
+
+
+
+
+
+
+
+
+
+</body>
+
 </html>
-
